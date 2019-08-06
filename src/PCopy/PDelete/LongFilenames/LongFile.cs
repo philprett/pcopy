@@ -385,9 +385,15 @@ namespace PCopy.LongFilenames
 
         public static long GetFileSize(string path)
         {
-            System.IO.FileInfo fi = new System.IO.FileInfo(path);
-            return fi.Length;
-        }
+			long fsize = 0;
+
+			using (var handle = GetFileHandleWithWrite(path))
+			{
+				NativeMethods.GetFileSizeEx(handle, ref fsize);
+
+				return fsize;
+			}
+		}
 
     }
 

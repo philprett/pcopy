@@ -102,7 +102,10 @@ namespace PCopy.LongFilenames
         internal static extern bool GetFileTime(SafeFileHandle hFile, ref long lpCreationTime, ref long lpLastAccessTime, ref long lpLastWriteTime);
 
 
-        [DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)]
+		[DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+		internal static extern bool GetFileSizeEx(SafeFileHandle hFile, ref long lpFileSize);
+
+		[DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)]
         internal static extern IntPtr FindFirstFile(string lpFileName, out WIN32_FIND_DATA lpFindFileData);
 
 
